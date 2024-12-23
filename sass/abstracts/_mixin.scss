@@ -1,0 +1,61 @@
+@mixin clearfix {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin absCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+///MEDIA QUERY MANAGER
+/*
+0-600px :  PHONE
+600PX-900PX:  TABLET PORTAIT
+900PX-1200PX:  TABLET LANDSCAPE
+
+[1200-1800] IS WHERE OUR NORMAL STYLE APPLYS
+1800PX+ : BIG DESKTOP
+
+
+*/
+/*
+BREAK AGRUEMENTS CHOICE
+-PHONE
+-TAB-PORT
+-TAB-LAND
+-BIG DESKTOP
+  
+
+// ORDER: BASE + TYPOGRAPHY > GENERAL LAYOUT + GRID >PAGE LAYOUT > COMPONENET
+   
+1EM=16PX
+*/
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    @media only screen and (max-width: 37.5em) {
+      @content;
+    } //600px/16=37.5em
+  }
+
+  @if $breakpoint == tab-port {
+    @media only screen and (max-width: 56.25em) {
+      @content;
+    } //900px/16= 56.25em
+  }
+  @if $breakpoint == tab-land {
+    @media only screen and (max-width: 75em) {
+      @content;
+    } //900px/16= 75em
+  }
+  @if $breakpoint == big-desktop {
+    @media only screen and (min-width: 112.5em) {
+      @content;
+    } //1800px/16= 112.5em
+  }
+}
